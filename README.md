@@ -1,0 +1,2 @@
+# WoLiBaFoNaGen
+WordListBasedFontNameGenerator
