@@ -20,7 +20,22 @@ Usage (Windows):
 
 import sys
 from setuptools import setup
+
 mainscript = 'WoLiBaFoNaGen.py'
+
+PLIST = dict(
+    CFBundleIdentifier="de.kutilek.WoLiBaFoNaGen",
+    NSHumanReadableCopyright=u"Copyright © 2017-2022 by Jens Kutílek",
+    LSMinimumSystemVersion="10.12.0",
+    CFBundleShortVersionString="2.0.0",
+    CFBundleVersion="2",
+)
+
+APP = [{
+    "script": mainscript,
+    "plist": PLIST,
+    }
+]
 
 DATA_FILES = [
     "japanese.txt",
@@ -37,13 +52,34 @@ DATA_FILES = [
     "yiddish.txt",
 ]
 
+OPTIONS = {
+    "argv_emulation": False,
+    "excludes": [
+        "sphinx",
+        "matplotlib",
+        "numpy",
+        "Image",
+        "pillow",
+        "wheel",
+        "setuptools",
+        "unittest",
+        "pydoc",
+        "pip",
+        "http",
+        "html",
+        "distutils",
+    ],  # modules are not available in dist
+    "site_packages": True,
+}
+
+
 if sys.platform == 'darwin':
     extra_options = dict(
         setup_requires=['py2app'],
         app=[mainscript],
         # Cross-platform applications generally expect sys.argv to
         # be used for opening files.
-        options=dict(py2app=dict(argv_emulation=True)),
+        options=dict(py2app=OPTIONS),
     )
 
 elif sys.platform == 'win32':
