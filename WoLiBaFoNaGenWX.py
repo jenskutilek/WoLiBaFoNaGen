@@ -78,14 +78,14 @@ class FNGFrame(wx.Frame):
             pnl,
             value="4",
             pos=(col, y - 2),
-            size=(box_width / 2 - 5, box_height),
+            size=(box_width // 2 - 5, box_height),
             style=wx.TE_RIGHT,
         )
         self.max_length = wx.TextCtrl(
             pnl,
             value="12",
-            pos=(col + box_width / 2 + 5, y - 2),
-            size=(box_width / 2 - 5, box_height),
+            pos=(col + box_width // 2 + 5, y - 2),
+            size=(box_width // 2 - 5, box_height),
             style=wx.TE_RIGHT,
         )
 
@@ -120,13 +120,13 @@ class FNGFrame(wx.Frame):
             pnl,
             value="",
             pos=(col, y - 2),
-            size=(box_width / 2 - 5, box_height),
+            size=(box_width // 2 - 5, box_height),
         )
         self.suffix = wx.TextCtrl(
             pnl,
             value="Pro",
-            pos=(col + box_width / 2 + 5, y - 2),
-            size=(box_width / 2 - 5, box_height),
+            pos=(col + box_width // 2 + 5, y - 2),
+            size=(box_width // 2 - 5, box_height),
         )
 
         y += int(round(1.5 * yskip))
