@@ -43,7 +43,7 @@ class FNGFrame(wx.Frame):
         self.word_list_selector = wx.ComboBox(
             pnl,
             pos=(col, y - 4),
-            size=(box_width, 26),
+            size=(box_width, box_height),
             choices=sorted(word_lists.keys()),
         )
 
