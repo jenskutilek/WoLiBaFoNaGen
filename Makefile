@@ -3,7 +3,7 @@ WX=dist/WoLiBaFoNaGen.app/Contents/Resources/lib/python3.10/lib-dynload/wx/
 
 .PHONY: dist
 dist: *.py *.txt # Resources/WoLiBaFoNaGen.icns
-	python3 version.py
+	# python3 version.py
 	# python3 setup.py py2app --iconfile Resources/WoLiBaFoNaGen.icns -O2
 	python3 setup.py py2app -O2
 	# ./fix.symlinks.sh
