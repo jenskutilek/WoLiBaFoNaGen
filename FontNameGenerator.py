@@ -25,9 +25,9 @@ word_lists = {
     "Japanese": "japanese",
     "Tolkien": "tolkien",
     "Rock Groups": "rock-groups",
-    "Music Classical": "music-classical",
-    "Music Country": "music-country",
-    "Music Jazz": "music-jazz",
+    "Music: Classical": "music-classical",
+    "Music: Country": "music-country",
+    "Music: Jazz": "music-jazz",
     "Movie Characters": "movie-characters",
 }
 
