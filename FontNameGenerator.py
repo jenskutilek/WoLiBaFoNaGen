@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-from cPickle import dump, load
+from pickle import dump, load
 from os.path import exists
 import codecs
 
@@ -38,7 +35,7 @@ selected_word_list = "English"
 
 
 
-class FontNameGenerator(object):
+class FontNameGenerator:
 
     def __init__(self, word_lists, word_list, min_length, max_length, ideal_length, length_influence, first_letters, other_letters, prefix, suffix, cutoff_score):
         self.word_lists = word_lists
@@ -64,7 +61,7 @@ class FontNameGenerator(object):
             self.word_list_filename = self.word_lists[value]
             self._word_list = self.load_wordlist()
         else:
-            print "Unknown word list: %s" % value
+            print("Unknown word list: %s" % value)
 
     @property
     def selected_word_list(self):
@@ -145,12 +142,12 @@ class FontNameGenerator(object):
     def get_diff_score(self, word):
         deviation_score = 1.0
         diff = len(word) - int(self.ideal_length)
-        #print "Diff:", diff
+        #print("Diff:", diff)
         if diff < 0:
-            #print diff, ideal_length, min_length
+            #print(diff, ideal_length, min_length)
             deviation_score = 1 - self.length_influence * float(abs(diff)) / (int(self.ideal_length) - int(self.min_length))
         elif diff > 0:
-            #print diff, max_length, ideal_length
+            #print(diff, max_length, ideal_length)
             deviation_score = 1 - self.length_influence * float(abs(diff)) / (int(self.max_length) - int(self.ideal_length))
         return deviation_score
 
@@ -160,22 +157,22 @@ class FontNameGenerator(object):
 
         for w in self.words:
             if int(self.min_length) <= len(w) <= int(self.max_length):
-                #print "\n", w
+                #print("\n", w)
                 score = 0.0
                 for l in w[1:]:
                     if l in self.other_letters:
                         score += 1
-                #print "Score:", score
+                #print("Score:", score)
                 repetition = (1 + len(set(list(w))) / float(len(w))) / 2
-                #print "Repetition:", repetition
+                #print("Repetition:", repetition)
                 score = score / len(w)
                 score = repetition * score
                 deviation = self.get_diff_score(w)
                 score = deviation * score
-                #print "Adjust score:", score
+                #print("Adjust score:", score)
                 if w[0].upper() in self.first_letters:
                     score *= 2
-                #print "Adjust score:", score
+                #print("Adjust score:", score)
                 score = round(score, 2)
                 if score in filtered_words:
                     #filtered_words[score].append("%s (%0.1f)" % (w, repetition))
@@ -188,7 +185,7 @@ class FontNameGenerator(object):
 
 if __name__ == "__main__":
     fng = FontNameGenerator(word_lists, selected_word_list, min_length, max_length, ideal_length, length_influence, first_letters, other_letters, prefix, suffix, cutoff_score)
-    print fng.get_filtered_words()
+    print(fng.get_filtered_words())
     #draw_words(filtered_words)
     # Write results to file
     #write_csv(filtered_words)

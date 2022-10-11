@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import wx
 import wx.grid
 from wx.lib.pubsub import pub
