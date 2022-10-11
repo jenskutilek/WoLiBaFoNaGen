@@ -1,4 +1,5 @@
 import codecs
+from pathlib import Path
 
 min_length = 4
 max_length = 12
@@ -15,9 +16,9 @@ suffix = ""
 cutoff_score = 0.3
 
 word_lists = {
-    "English": "WordsEn",
-    "Danish": "WordsDan",
-    "Dutch": "WordsNld",
+    "English": "wordsEn",
+    "Danish": "wordsDan",
+    "Dutch": "wordsNld",
     "Swahili": "swahili",
     "Yiddish": "yiddish",
     "Japanese": "japanese",
@@ -140,9 +141,10 @@ class FontNameGenerator:
         f.close()
 
     def load_wordlist(self):
-        with codecs.open(
-            "%s.txt" % self.word_list_filename, "rb", "utf-8"
-        ) as txt_file:
+        file_path = Path(
+            Path(__file__).parent / self.word_list_filename
+        ).with_suffix(".txt")
+        with codecs.open(str(file_path), "rb", "utf-8") as txt_file:
             self.words = [line.strip() for line in txt_file]
 
     def get_diff_score(self, word):
