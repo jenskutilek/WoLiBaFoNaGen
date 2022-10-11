@@ -1,0 +1,8 @@
+altgraph==0.17.3
+macholib==1.16.2
+modulegraph==0.19.3
+numpy==1.23.3
+Pillow==9.2.0
+py2app==0.28.4
+six==1.16.0
+wxPython==4.2.0
