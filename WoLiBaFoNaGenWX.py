@@ -3,7 +3,12 @@ import wx.grid
 from wx.lib.pubsub import pub
 from sys import platform
 
-from FontNameGenerator import *
+from FontNameGenerator import (
+    FontNameGenerator,
+    cutoff_score,
+    selected_word_list,
+    word_lists,
+)
 
 if platform == "win32":
     ui_width = 264
@@ -35,7 +40,7 @@ class FNGFrame(wx.Frame):
 
         y = 12
 
-        word_list_selector_label = wx.StaticText(
+        wx.StaticText(
             pnl,
             label="Word List",
             pos=(x, y),
@@ -48,9 +53,7 @@ class FNGFrame(wx.Frame):
         )
 
         y += yskip
-        first_letters_label = wx.StaticText(
-            pnl, label="First Letters", pos=(x, y)
-        )
+        wx.StaticText(pnl, label="First Letters", pos=(x, y))
 
         self.first_letters = wx.TextCtrl(
             pnl,
@@ -60,7 +63,7 @@ class FNGFrame(wx.Frame):
         )
 
         y += yskip
-        other_letters_label = wx.StaticText(
+        wx.StaticText(
             pnl,
             label="Other Letters",
             pos=(x, y),
@@ -73,7 +76,7 @@ class FNGFrame(wx.Frame):
         )
 
         y += yskip
-        length_label = wx.StaticText(pnl, label="Min/Max Length", pos=(x, y))
+        wx.StaticText(pnl, label="Min/Max Length", pos=(x, y))
         self.min_length = wx.TextCtrl(
             pnl,
             value="4",
@@ -90,9 +93,7 @@ class FNGFrame(wx.Frame):
         )
 
         y += yskip
-        ideal_length_label = wx.StaticText(
-            pnl, label="Ideal Length", pos=(x, y)
-        )
+        wx.StaticText(pnl, label="Ideal Length", pos=(x, y))
         self.ideal_length = wx.TextCtrl(
             pnl,
             value="5",
@@ -102,9 +103,7 @@ class FNGFrame(wx.Frame):
         )
 
         y += yskip
-        length_influence_label = wx.StaticText(
-            pnl, label="Length Influence", pos=(x, y)
-        )
+        wx.StaticText(pnl, label="Length Influence", pos=(x, y))
         self.length_influence = wx.Slider(
             pnl,
             value=25,
@@ -115,7 +114,7 @@ class FNGFrame(wx.Frame):
         )
 
         y += yskip
-        affix_label = wx.StaticText(pnl, label="Prefix/Suffix", pos=(x, y))
+        wx.StaticText(pnl, label="Prefix/Suffix", pos=(x, y))
         self.prefix = wx.TextCtrl(
             pnl,
             value="",
@@ -280,7 +279,7 @@ class FNGFrame(wx.Frame):
             word_string = "\n".join(words)
             do = wx.TextDataObject()
             do.SetText(word_string)
-            success = wx.TheClipboard.SetData(do)
+            wx.TheClipboard.SetData(do)
             wx.TheClipboard.Close()
 
     def OnClose(self, event):
