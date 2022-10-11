@@ -1,5 +1,3 @@
-from pickle import dump, load
-from os.path import exists
 import codecs
 
 min_length = 4
@@ -142,18 +140,10 @@ class FontNameGenerator:
         f.close()
 
     def load_wordlist(self):
-        if not exists("%s.pickle" % self.word_list_filename):
-            with codecs.open(
-                "%s.txt" % self.word_list_filename, "rb", "utf-8"
-            ) as txt_file:
-                self.words = [line.strip() for line in txt_file]
-            with open(
-                "%s.pickle" % self.word_list_filename, "wb"
-            ) as pickle_file:
-                dump(self.words, pickle_file)
-        else:
-            with open("%s.pickle" % self.word_list_filename, "rb") as f:
-                self.words = load(f)
+        with codecs.open(
+            "%s.txt" % self.word_list_filename, "rb", "utf-8"
+        ) as txt_file:
+            self.words = [line.strip() for line in txt_file]
 
     def get_diff_score(self, word):
         deviation_score = 1.0
