@@ -13,8 +13,6 @@ else:
     ui_height = 254
 
 
-
-
 class FNGFrame(wx.Frame):
     """
     The main frame
@@ -31,6 +29,7 @@ class FNGFrame(wx.Frame):
 
         x = 8
         col = 120
+        box_height = 21
         box_width = 120
         yskip = 25
 
@@ -60,7 +59,7 @@ class FNGFrame(wx.Frame):
             pnl,
             value = "ACDFGRSTY",
             pos = (col, y - 2),
-            size = (box_width, 21),
+            size = (box_width, box_height),
         )
 
         y += yskip
@@ -73,7 +72,7 @@ class FNGFrame(wx.Frame):
             pnl,
             value = "aeglnrst",
             pos = (col, y - 2),
-            size = (box_width, 21),
+            size = (box_width, box_height),
         )
 
         y += yskip
@@ -82,14 +81,14 @@ class FNGFrame(wx.Frame):
             pnl,
             value = "4",
             pos = (col, y - 2),
-            size = (box_width/2 - 5, 21),
+            size = (box_width/2 - 5, box_height),
             style = wx.TE_RIGHT,
         )
         self.max_length  = wx.TextCtrl(
             pnl,
             value = "12",
             pos = (col + box_width/2 + 5, y - 2),
-            size = (box_width/2 - 5, 21),
+            size = (box_width/2 - 5, box_height),
             style = wx.TE_RIGHT,
         )
 
@@ -99,7 +98,7 @@ class FNGFrame(wx.Frame):
             pnl,
             value = "5",
             pos = (col, y - 2),
-            size = (box_width, 21),
+            size = (box_width, box_height),
             style = wx.TE_RIGHT,
         )
 
@@ -111,7 +110,7 @@ class FNGFrame(wx.Frame):
             minValue = 0,
             maxValue = 100,
             pos = (col, y),
-            size = (box_width, 21),
+            size = (box_width, box_height),
         )
 
         y += yskip
@@ -120,13 +119,13 @@ class FNGFrame(wx.Frame):
             pnl,
             value = "",
             pos = (col, y - 2),
-            size = (box_width/2 - 5, 21),
+            size = (box_width/2 - 5, box_height),
         )
         self.suffix  = wx.TextCtrl(
             pnl,
             value = "Pro",
             pos = (col + box_width/2 + 5, y - 2),
-            size = (box_width/2 - 5, 21),
+            size = (box_width/2 - 5, box_height),
         )
 
         y += int(round(1.5 * yskip))
@@ -134,7 +133,7 @@ class FNGFrame(wx.Frame):
             pnl,
             label = "Generate",
             pos = (col, y),
-            size = (box_width, 21),
+            size = (box_width, box_height),
         )
         generate_button.Bind(wx.EVT_BUTTON, self.OnGenerate)
 
