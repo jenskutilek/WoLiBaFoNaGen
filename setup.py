@@ -7,7 +7,7 @@ PLIST = dict(
     CFBundleIdentifier="de.kutilek.WoLiBaFoNaGen",
     NSHumanReadableCopyright=u"Copyright © 2017-2022 by Jens Kutílek",
     LSMinimumSystemVersion="10.12.0",
-    CFBundleShortVersionString="2.0.0",
+    CFBundleShortVersionString="2.0.1",
     CFBundleVersion="2",
 )
 
