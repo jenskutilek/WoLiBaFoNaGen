@@ -38,18 +38,18 @@ APP = [{
 ]
 
 DATA_FILES = [
-    "japanese.txt",
-    "movie-characters.txt",
-    "music-classical.txt",
-    "music-country.txt",
-    "music-jazz.txt",
-    "rock-groups.txt",
-    "swahili.txt",
-    "tolkien.txt",
-    "wordsDan.txt",
-    "wordsEn.txt",
-    "wordsNld.txt",
-    "yiddish.txt",
+    "wordlists/japanese.txt",
+    "wordlists/movie-characters.txt",
+    "wordlists/music-classical.txt",
+    "wordlists/music-country.txt",
+    "wordlists/music-jazz.txt",
+    "wordlists/rock-groups.txt",
+    "wordlists/swahili.txt",
+    "wordlists/tolkien.txt",
+    "wordlists/wordsDan.txt",
+    "wordlists/wordsEn.txt",
+    "wordlists/wordsNld.txt",
+    "wordlists/yiddish.txt",
 ]
 
 OPTIONS = {
