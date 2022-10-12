@@ -83,7 +83,7 @@ class WoLiBaFoNaGen(GeneralPlugin):
         # print(score_words[score])
         # score = scores[0]
         name, _, _ = choice(score_words[score])
-        return name.title()
+        return f"{self.fng.prefix}{name.title()}{self.fng.suffix}"
 
     def saveSettings_(self, sender=None) -> None:
         # Update the settings from the window and save them to defaults
@@ -141,7 +141,7 @@ class WoLiBaFoNaGen(GeneralPlugin):
         name = self.random_name()
         ok = AskString(
             "We found a nice name for your font:",
-            f"{self.fng.prefix}{name}{self.fng.suffix}",
+            name,
             "WoLiBaFoNaGen",
             "Use This Name",
         )
