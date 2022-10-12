@@ -37,7 +37,7 @@ class FontNameGenerator:
     def __init__(
         self,
         word_lists=word_lists,
-        word_list="English",
+        word_list=None,
         min_length=min_length,
         max_length=max_length,
         ideal_length=ideal_length,
@@ -66,11 +66,17 @@ class FontNameGenerator:
 
     @word_list.setter
     def word_list(self, value):
+        if value is None:
+            self._word_list = None
+            return
+
         # Set word list by name
         if value in self.word_lists:
             self.word_list_filename = self.word_lists[value]
-            self._word_list = self.load_wordlist()
+            self.load_wordlist()
+            self._word_list = value
         else:
+            self._word_list = None
             print("Unknown word list: %s" % value)
 
     @property
@@ -83,7 +89,7 @@ class FontNameGenerator:
         self.word_list_filename = self.word_lists[
             sorted(self.word_lists.keys())[self._selected_word_list]
         ]
-        self.word_list = self.load_wordlist()
+        self.load_wordlist()
 
     @property
     def prefix(self):
@@ -119,18 +125,17 @@ class FontNameGenerator:
                 break
         f.close()
 
-    def write_csv(self, the_dict):
+    def write_csv(self, the_dict) -> None:
         f = codecs.open("found_names.csv", "wb", "utf-8")
         f.write('"Name";"Score";"Letter Uniqueness";"Length Score"\n')
         for s in sorted(the_dict.keys(), reverse=True):
             if s > 0.5:
                 for w, r, d in sorted(the_dict[s]):
                     f.write(
-                        '"%s%s%s%s";"%s";"%s";"%s"\n'
+                        '"%s%s%s";"%s";"%s";"%s"\n'
                         % (
                             self.prefix,
-                            w[0].upper(),
-                            w[1:],
+                            w.title(),
                             self.suffix,
                             int(round(s, 1) * 10),
                             int(round(r, 1) * 10),
@@ -141,14 +146,14 @@ class FontNameGenerator:
                 break
         f.close()
 
-    def load_wordlist(self):
+    def load_wordlist(self) -> None:
         file_path = Path(
             Path(__file__).parent / self.word_list_filename
         ).with_suffix(".txt")
         with codecs.open(str(file_path), "rb", "utf-8") as txt_file:
             self.words = [line.strip() for line in txt_file]
 
-    def get_diff_score(self, word):
+    def get_diff_score(self, word) -> float:
         deviation_score = 1.0
         diff = len(word) - int(self.ideal_length)
         if diff < 0:

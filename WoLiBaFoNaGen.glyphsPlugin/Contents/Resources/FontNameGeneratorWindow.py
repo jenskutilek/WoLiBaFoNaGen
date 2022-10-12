@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from AppKit import NSNumberFormatter
+# from AppKit import NSNumberFormatter
 from FontNameGenerator import FontNameGenerator
 from vanilla import (
     Button,
@@ -74,6 +74,7 @@ class FontNameGeneratorWindow:
             return
 
         self.w.wordlist.selector.setItems(self.generator.word_lists)
+        self.w.wordlist.selector.setItem(self.generator.word_list)
         self.w.min_max_length.min_letters.set(self.generator.min_length)
         self.w.min_max_length.max_letters.set(self.generator.max_length)
         self.w.ideal_length.input.set(self.generator.ideal_length)

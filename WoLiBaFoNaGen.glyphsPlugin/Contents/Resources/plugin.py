@@ -14,14 +14,14 @@ from GlyphsApp import (
 )
 from GlyphsApp.plugins import GeneralPlugin
 
-from FontNameGenerator import FontNameGenerator, word_lists
+from FontNameGenerator import FontNameGenerator
 from FontNameGeneratorWindow import FontNameGeneratorWindow
 
 
 key = "de.kutilek.glyphs.WoLiBaFoNaGen.%s"
 
 defaults = {
-    "word_list_name": "English",
+    "word_list": "English",
     "min_length": 3,
     "max_length": 12,
     "ideal_length": 4,
@@ -59,7 +59,7 @@ class WoLiBaFoNaGen(GeneralPlugin):
         Glyphs.menu[WINDOW_MENU].append(newMenuItem)
 
         # Initialize the parameters
-        self.word_list_name: str | None = None
+        self.word_list: str | None = None
         self.min_length: int | None = None
         self.max_length: int | None = None
         self.ideal_length: int | None = None
@@ -69,7 +69,7 @@ class WoLiBaFoNaGen(GeneralPlugin):
         self.prefix: str | None = None
         self.suffix: str | None = None
         # self.cutoff_score: float | None = None
-        self.fng = FontNameGenerator(word_lists=word_lists)
+        self.fng = FontNameGenerator()
         self.load_defaults()
         self.window = None
         Glyphs.addCallback(self.autoFillName_, DOCUMENTOPENED)
