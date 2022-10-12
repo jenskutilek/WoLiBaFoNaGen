@@ -4,7 +4,7 @@ from random import choice
 import objc
 
 from AppKit import NSMenuItem
-from GlyphsApp import DOCUMENTOPENED, EDIT_MENU, WINDOW_MENU, Glyphs
+from GlyphsApp import DOCUMENTOPENED, EDIT_MENU, WINDOW_MENU, Glyphs, AskString
 from GlyphsApp.plugins import GeneralPlugin
 
 key = "de.kutilek.glyphs.WoLiBaFoNaGen.%s"
@@ -59,24 +59,10 @@ class WoLiBaFoNaGen(GeneralPlugin):
         self.suffix: str | None = None
         self.cutoff_score: float | None = None
         self.load_defaults()
+        Glyphs.addCallback(self.autoFillName_, DOCUMENTOPENED)
 
     @objc.python_method
-    def load_defaults(self) -> None:
-        for k, v in defaults.items():
-            saved = Glyphs.defaults[key % k]
-            setattr(self, k, saved or v)
-
-    @objc.python_method
-    def save_defaults(self) -> None:
-        for k in defaults.keys():
-            Glyphs.defaults[key % k] = getattr(self, k)
-
-    def showWindow_(self, sender) -> None:
-        """Do something like show a window"""
-        print("show Windows")
-
-    def suggestName_(self, sender) -> None:
-        """Fill in a random name following the current rules"""
+    def random_name(self) -> str:
         from FontNameGenerator import FontNameGenerator, word_lists
 
         fg = FontNameGenerator(
@@ -92,10 +78,45 @@ class WoLiBaFoNaGen(GeneralPlugin):
             suffix=self.suffix,
             cutoff_score=self.cutoff_score,
         )
-        words = fg.get_filtered_words()
-        print(words)
-        name = choice(words)
-        print(name)
+        _, _, score_words = fg.get_filtered_words()
+        scores = sorted(score_words, reverse=True)[: min(10, len(score_words))]
+        score = choice(scores)
+        name, _, _ = choice(score_words[score])
+        return name.title()
+
+    @objc.python_method
+    def load_defaults(self) -> None:
+        for k, v in defaults.items():
+            saved = Glyphs.defaults[key % k]
+            setattr(self, k, saved or v)
+
+    @objc.python_method
+    def save_defaults(self) -> None:
+        for k in defaults.keys():
+            Glyphs.defaults[key % k] = getattr(self, k)
+
+    def autoFillName_(self, sender) -> None:
+        """Fill in a random name following the current rules"""
+        doc = sender.object()
+        if doc.font.familyName == "New Font":
+            if doc.filePath is None:
+                doc.font.familyName = self.random_name()
+
+    def showWindow_(self, sender) -> None:
+        """Do something like show a window"""
+        print("show Windows")
+
+    def suggestName_(self, sender) -> None:
+        """Show a random name following the current rules"""
+        name = self.random_name()
+        ok = AskString(
+            "We found a nice name for your font:",
+            name,
+            "WoLiBaFoNaGen",
+            "Use This Name",
+        )
+        if ok:
+            Glyphs.font.familyName = name
 
     @objc.python_method
     def __file__(self):
