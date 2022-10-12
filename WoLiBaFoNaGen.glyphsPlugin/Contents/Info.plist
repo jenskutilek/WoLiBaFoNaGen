@@ -13,15 +13,15 @@
 	<key>CFBundleName</key>
 	<string>WoLiBaFoNaGen</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.0</string> <!-- 1.0 -->
+	<string>2.0.1</string> <!-- 1.0 -->
 	<key>CFBundleVersion</key>
-	<string>200</string> <!-- 123 -->
+	<string>201</string> <!-- 123 -->
 	<key>UpdateFeedURL</key>
-	<string>____OnlineUrlToThisPlist____</string>
+	<string>https://raw.githubusercontent.com/jenskutilek/WoLiBaFoNaGen/master/WoLiBaFoNaGen.glyphsPlugin/Contents/Info.plist</string>
 	<key>productPageURL</key>
-	<string>____ProductPageURL____</string>
+	<string>https://github.com/jenskutilek/WoLiBaFoNaGen</string>
 	<key>productReleaseNotes</key>
-	<string>____LatestReleaseNotes____</string>
+	<string>Initial release.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright, Jens Kutilek, 2022</string>
 	<key>NSPrincipalClass</key>
