@@ -10,8 +10,8 @@ length_influence = 0.25
 first_letters = "CEFGKRS"
 other_letters = "cefgrskya"
 
-prefix = ""
-suffix = ""
+name_prefix = ""
+name_suffix = ""
 
 cutoff_score = 0.3
 
@@ -36,17 +36,17 @@ selected_word_list = "English"
 class FontNameGenerator:
     def __init__(
         self,
-        word_lists,
-        word_list,
-        min_length,
-        max_length,
-        ideal_length,
-        length_influence,
-        first_letters,
-        other_letters,
-        prefix,
-        suffix,
-        cutoff_score,
+        word_lists=word_lists,
+        word_list="English",
+        min_length=min_length,
+        max_length=max_length,
+        ideal_length=ideal_length,
+        length_influence=length_influence,
+        first_letters=first_letters,
+        other_letters=other_letters,
+        prefix=name_prefix,
+        suffix=name_suffix,
+        cutoff_score=cutoff_score,
     ):
         self.word_lists = word_lists
         self.word_list = word_list  # Name
@@ -112,7 +112,8 @@ class FontNameGenerator:
                 f.write("\n****** Score: %s ******\n" % s)
                 for w, r, d in sorted(the_dict[s]):
                     f.write(
-                        "%s%s%s%s\n" % (prefix, w[0].upper(), w[1:], suffix)
+                        "%s%s%s%s\n"
+                        % (self.prefix, w[0].upper(), w[1:], self.suffix)
                     )
             else:
                 break
@@ -127,10 +128,10 @@ class FontNameGenerator:
                     f.write(
                         '"%s%s%s%s";"%s";"%s";"%s"\n'
                         % (
-                            prefix,
+                            self.prefix,
                             w[0].upper(),
                             w[1:],
-                            suffix,
+                            self.suffix,
                             int(round(s, 1) * 10),
                             int(round(r, 1) * 10),
                             int(round(d, 1) * 10),
@@ -199,8 +200,8 @@ if __name__ == "__main__":
         length_influence,
         first_letters,
         other_letters,
-        prefix,
-        suffix,
+        name_prefix,
+        name_suffix,
         cutoff_score,
     )
     print(fng.get_filtered_words())
