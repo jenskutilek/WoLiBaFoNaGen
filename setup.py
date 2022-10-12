@@ -1,23 +1,3 @@
-"""
-py2app/py2exe build script for MyApplication.
-
-Will automatically ensure that all build prerequisites are available
-via ez_setup
-
-Don't use the system-installed py2app, install your own copy instead:
-pip install --user --ignore-installed py2app
-
-Windows:
-pip install --user -U py2exe_py2
-
-Usage (Mac OS X):
-    python setup.py py2app
-Usage (Windows):
-    python setup.py py2exe
-"""
-#import ez_setup
-#ez_setup.use_setuptools()
-
 import sys
 from setuptools import setup
 
