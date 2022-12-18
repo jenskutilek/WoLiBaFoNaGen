@@ -12,6 +12,10 @@ from vanilla import (
     Window,
 )
 
+from Foundation import NSClassFromString
+
+class SteppingEditText(EditText):
+    nsTextFieldClass = NSClassFromString("GSSteppingTextField")
 
 class FontNameGeneratorWindow:
     def __init__(
@@ -124,8 +128,8 @@ class FontNameGeneratorWindow:
     def _ui_min_max_length(self):
         self.w.min_max_length = g = Group("auto")
         g.label = TextBox("auto", "Min/Max Length")
-        g.min_letters = EditText("auto", "4")
-        g.max_letters = EditText("auto", "12")
+        g.min_letters = SteppingEditText("auto", "4")
+        g.max_letters = SteppingEditText("auto", "12")
         g.addAutoPosSizeRules(
             [
                 "H:|[label(col)]-[min_letters(40)]-[max_letters(40)]",
@@ -139,7 +143,7 @@ class FontNameGeneratorWindow:
     def _ui_ideal_length(self):
         self.w.ideal_length = g = Group("auto")
         g.label = TextBox("auto", "Ideal Length")
-        g.input = EditText("auto", "5")
+        g.input = SteppingEditText("auto", "5")
         g.addAutoPosSizeRules(
             [
                 "H:|[label(col)]-[input(40)]",
