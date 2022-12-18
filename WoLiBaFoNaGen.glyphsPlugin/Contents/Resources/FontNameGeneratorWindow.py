@@ -26,8 +26,8 @@ class FontNameGeneratorWindow:
             closable=True,
         )
         self.metrics = {
-            "col": 110,
-            "w": 120,
+            "col": 108,
+            "w": 122,
         }
         self.generator = generator
 
@@ -53,12 +53,8 @@ class FontNameGeneratorWindow:
             "H:|-[ideal_length]-|",
             "H:|-[length_influence]-|",
             "H:|-[affix]-|",
-            "H:|-[buttons]-|",
-            (
-                "V:|-[wordlist]-[first_letters]-[other_letters]-"
-                "[min_max_length]-[ideal_length]-[length_influence]-"
-                "[affix]-[buttons]-|"
-            ),
+            "H:|-[save]-|",
+            "V:|-[wordlist]-[first_letters]-[other_letters]-[min_max_length]-[ideal_length]-[length_influence]-[affix]-[save]-|",
         ]
         self.w.addAutoPosSizeRules(rules, self.metrics)
 
@@ -105,7 +101,7 @@ class FontNameGeneratorWindow:
         g.input = EditText("auto", "")
         g.addAutoPosSizeRules(
             [
-                "H:|[label(col)]-[input(>=w)]|",
+                "H:|[label(col)]-[input]|",
                 "V:|[label]|",
                 "V:|[input]|",
             ],
@@ -118,7 +114,7 @@ class FontNameGeneratorWindow:
         g.input = EditText("auto", "")
         g.addAutoPosSizeRules(
             [
-                "H:|[label(col)]-[input(>=w)]|",
+                "H:|[label(col)]-[input]|",
                 "V:|[label]|",
                 "V:|[input]|",
             ],
@@ -132,7 +128,7 @@ class FontNameGeneratorWindow:
         g.max_letters = EditText("auto", "12")
         g.addAutoPosSizeRules(
             [
-                "H:|[label(col)]-[min_letters(40)]-[max_letters(40)]-|",
+                "H:|[label(col)]-[min_letters(40)]-[max_letters(40)]",
                 "V:|[label]|",
                 "V:|[min_letters]|",
                 "V:|[max_letters]|",
@@ -146,7 +142,7 @@ class FontNameGeneratorWindow:
         g.input = EditText("auto", "5")
         g.addAutoPosSizeRules(
             [
-                "H:|[label(col)]-[input(>=w)]|",
+                "H:|[label(col)]-[input(40)]",
                 "V:|[label]|",
                 "V:|[input]|",
             ],
@@ -161,7 +157,7 @@ class FontNameGeneratorWindow:
         )
         g.addAutoPosSizeRules(
             [
-                "H:|[label(col)]-[input(>=w)]|",
+                "H:|[label(col)]-[input]|",
                 "V:|[label]|",
                 "V:|[input]|",
             ],
@@ -175,7 +171,7 @@ class FontNameGeneratorWindow:
         g.suffix = EditText("auto", "Pro")
         g.addAutoPosSizeRules(
             [
-                "H:|[label(col)]-[prefix(40)]-[suffix(40)]|",
+                "H:|[label(col)]-[prefix(40)]-[suffix(40)]",
                 "V:|[label]|",
                 "V:|[prefix]|",
                 "V:|[suffix]|",
@@ -184,16 +180,7 @@ class FontNameGeneratorWindow:
         )
 
     def _ui_buttons(self, save_callback, generate_callback):
-        self.w.buttons = g = Group("auto")
-        g.save = Button("auto", "Save Settings", callback=save_callback)
-        g.addAutoPosSizeRules(
-            [
-                "H:|[save]|",
-                "V:|[save]|",
-            ],
-            self.metrics,
-        )
-
+        self.w.save = Button("auto", "Save Settings", callback=save_callback)
 
 if __name__ == "__main__":
     FontNameGeneratorWindow()
