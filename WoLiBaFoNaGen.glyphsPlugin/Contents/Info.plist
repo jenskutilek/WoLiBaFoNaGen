@@ -13,9 +13,9 @@
 	<key>CFBundleName</key>
 	<string>WoLiBaFoNaGen</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.1</string> <!-- 1.0 -->
+	<string>2.0.2</string> <!-- 1.0 -->
 	<key>CFBundleVersion</key>
-	<string>201</string> <!-- 123 -->
+	<string>202</string> <!-- 123 -->
 	<key>UpdateFeedURL</key>
 	<string>https://raw.githubusercontent.com/jenskutilek/WoLiBaFoNaGen/master/WoLiBaFoNaGen.glyphsPlugin/Contents/Info.plist</string>
 	<key>productPageURL</key>

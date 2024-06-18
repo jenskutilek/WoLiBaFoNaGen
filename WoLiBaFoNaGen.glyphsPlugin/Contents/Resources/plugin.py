@@ -45,17 +45,21 @@ class WoLiBaFoNaGen(GeneralPlugin):
 
     @objc.python_method
     def start(self) -> None:
-        newMenuItem = NSMenuItem(
-            Glyphs.localize(
+        newMenuItem = NSMenuItem.alloc().init()
+        newMenuItem.setTitle_(Glyphs.localize(
                 {
                     "de": "Neuen Schriftnamen vorschlagen",
                     "en": "Suggest New Font Name",
                 }
-            ),
-            self.suggestName_,
-        )
+            ))
+        newMenuItem.setAction_(self.suggestName_)
+        newMenuItem.setTarget_(self)
         Glyphs.menu[EDIT_MENU].append(newMenuItem)
-        newMenuItem = NSMenuItem(self.name, self.showWindow_)
+
+        newMenuItem = NSMenuItem.alloc().init()
+        newMenuItem.setTitle_(self.name)
+        newMenuItem.setAction_(self.showWindow_)
+        newMenuItem.setTarget_(self)
         Glyphs.menu[WINDOW_MENU].append(newMenuItem)
 
         # Initialize the parameters
