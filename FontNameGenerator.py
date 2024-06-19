@@ -49,6 +49,8 @@ class FontNameGenerator:
         suffix=name_suffix,
         cutoff_score=cutoff_score,
     ):
+        self.find_word_list_dir()
+
         self.word_lists = word_lists
         self.word_list = word_list  # Name
         self.min_length = min_length
@@ -60,6 +62,17 @@ class FontNameGenerator:
         self.prefix = prefix
         self.suffix = suffix
         self.cutoff_score = cutoff_score
+
+    def find_word_list_dir(self):
+        self.base_path = Path(__file__).parent
+        for _ in range(3):
+            self.word_list_dir = self.base_path / "wordlists"
+            if self.word_list_dir.exists():
+                break
+
+            self.base_path = self.base_path.parent
+        # print(f"Base path: {self.base_path}")
+        # print(f"Word lists in {self.word_list_dir}")
 
     @property
     def word_list(self):
@@ -147,13 +160,7 @@ class FontNameGenerator:
         f.close()
 
     def load_wordlist(self) -> None:
-        if hasattr(sys, "frozen"):
-            # WoLiBaFoNaGen/dist/WoLiBaFoNaGen.app/Contents/Resources/lib/python310.zip/FontNameGenerator.pyc
-            # to Resources
-            base_path = Path(__file__).parent.parent.parent
-        else:
-            base_path = Path(__file__).parent
-        file_path = Path(base_path / self.word_list_filename).with_suffix(".txt")
+        file_path = (self.word_list_dir / self.word_list_filename).with_suffix(".txt")
         with codecs.open(str(file_path), "rb", "utf-8") as txt_file:
             self.words = [line.strip() for line in txt_file]
 
