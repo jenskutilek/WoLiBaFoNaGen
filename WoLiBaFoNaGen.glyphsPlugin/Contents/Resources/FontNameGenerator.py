@@ -1,4 +1,5 @@
 import codecs
+import sys
 from pathlib import Path
 
 min_length = 4
@@ -147,8 +148,14 @@ class FontNameGenerator:
         f.close()
 
     def load_wordlist(self) -> None:
+        if hasattr(sys, "frozen"):
+            # WoLiBaFoNaGen/dist/WoLiBaFoNaGen.app/Contents/Resources/lib/python310.zip/FontNameGenerator.pyc
+            # to Resources
+            base_path = Path(__file__).parent.parent.parent
+        else:
+            base_path = Path(__file__).parent
         file_path = Path(
-            Path(__file__).parent / self.word_list_filename
+            base_path / self.word_list_filename
         ).with_suffix(".txt")
         with codecs.open(str(file_path), "rb", "utf-8") as txt_file:
             self.words = [line.strip() for line in txt_file]

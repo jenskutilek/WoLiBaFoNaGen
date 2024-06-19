@@ -33,8 +33,3 @@ dist-clean: clean
 .PHONY: clean
 clean:
 	rm -rf build/ dist/
-
-
-.PHONY: fix-links
-fix-links: dist
-	./fix.symlinks.sh

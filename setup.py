@@ -1,23 +1,3 @@
-"""
-py2app/py2exe build script for MyApplication.
-
-Will automatically ensure that all build prerequisites are available
-via ez_setup
-
-Don't use the system-installed py2app, install your own copy instead:
-pip install --user --ignore-installed py2app
-
-Windows:
-pip install --user -U py2exe_py2
-
-Usage (Mac OS X):
-    python setup.py py2app
-Usage (Windows):
-    python setup.py py2exe
-"""
-#import ez_setup
-#ez_setup.use_setuptools()
-
 import sys
 from setuptools import setup
 
@@ -27,7 +7,7 @@ PLIST = dict(
     CFBundleIdentifier="de.kutilek.WoLiBaFoNaGen",
     NSHumanReadableCopyright=u"Copyright © 2017-2022 by Jens Kutílek",
     LSMinimumSystemVersion="10.12.0",
-    CFBundleShortVersionString="2.0.0",
+    CFBundleShortVersionString="2.0.1",
     CFBundleVersion="2",
 )
 
@@ -38,18 +18,18 @@ APP = [{
 ]
 
 DATA_FILES = [
-    "japanese.txt",
-    "movie-characters.txt",
-    "music-classical.txt",
-    "music-country.txt",
-    "music-jazz.txt",
-    "rock-groups.txt",
-    "swahili.txt",
-    "tolkien.txt",
-    "wordsDan.txt",
-    "wordsEn.txt",
-    "wordsNld.txt",
-    "yiddish.txt",
+    "wordlists/japanese.txt",
+    "wordlists/movie-characters.txt",
+    "wordlists/music-classical.txt",
+    "wordlists/music-country.txt",
+    "wordlists/music-jazz.txt",
+    "wordlists/rock-groups.txt",
+    "wordlists/swahili.txt",
+    "wordlists/tolkien.txt",
+    "wordlists/wordsDan.txt",
+    "wordlists/wordsEn.txt",
+    "wordlists/wordsNld.txt",
+    "wordlists/yiddish.txt",
 ]
 
 OPTIONS = {
