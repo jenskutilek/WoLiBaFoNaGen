@@ -1,19 +1,20 @@
 import sys
 from setuptools import setup
 
-mainscript = 'WoLiBaFoNaGen.py'
+mainscript = "WoLiBaFoNaGen.py"
 
 PLIST = dict(
     CFBundleIdentifier="de.kutilek.WoLiBaFoNaGen",
-    NSHumanReadableCopyright=u"Copyright © 2017-2022 by Jens Kutílek",
+    NSHumanReadableCopyright="Copyright © 2017-2022 by Jens Kutílek",
     LSMinimumSystemVersion="10.12.0",
     CFBundleShortVersionString="2.0.1",
     CFBundleVersion="2",
 )
 
-APP = [{
-    "script": mainscript,
-    "plist": PLIST,
+APP = [
+    {
+        "script": mainscript,
+        "plist": PLIST,
     }
 ]
 
@@ -53,18 +54,18 @@ OPTIONS = {
 }
 
 
-if sys.platform == 'darwin':
+if sys.platform == "darwin":
     extra_options = dict(
-        setup_requires=['py2app'],
+        setup_requires=["py2app"],
         app=[mainscript],
         # Cross-platform applications generally expect sys.argv to
         # be used for opening files.
         options=dict(py2app=OPTIONS),
     )
 
-elif sys.platform == 'win32':
+elif sys.platform == "win32":
     extra_options = dict(
-        setup_requires=['py2exe'],
+        setup_requires=["py2exe"],
         app=[mainscript],
     )
 else:
@@ -74,8 +75,4 @@ else:
         scripts=[mainscript],
     )
 
-setup(
-    name="WoLiBaFoNaGen",
-    data_files=DATA_FILES,
-    **extra_options
-)
+setup(name="WoLiBaFoNaGen", data_files=DATA_FILES, **extra_options)

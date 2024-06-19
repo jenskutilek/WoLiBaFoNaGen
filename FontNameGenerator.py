@@ -119,8 +119,7 @@ class FontNameGenerator:
                 f.write("\n****** Score: %s ******\n" % s)
                 for w, r, d in sorted(the_dict[s]):
                     f.write(
-                        "%s%s%s%s\n"
-                        % (self.prefix, w[0].upper(), w[1:], self.suffix)
+                        "%s%s%s%s\n" % (self.prefix, w[0].upper(), w[1:], self.suffix)
                     )
             else:
                 break
@@ -154,9 +153,7 @@ class FontNameGenerator:
             base_path = Path(__file__).parent.parent.parent
         else:
             base_path = Path(__file__).parent
-        file_path = Path(
-            base_path / self.word_list_filename
-        ).with_suffix(".txt")
+        file_path = Path(base_path / self.word_list_filename).with_suffix(".txt")
         with codecs.open(str(file_path), "rb", "utf-8") as txt_file:
             self.words = [line.strip() for line in txt_file]
 

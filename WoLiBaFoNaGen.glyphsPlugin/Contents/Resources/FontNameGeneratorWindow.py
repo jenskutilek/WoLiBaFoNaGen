@@ -14,8 +14,10 @@ from vanilla import (
 
 from Foundation import NSClassFromString
 
+
 class SteppingEditText(EditText):
     nsTextFieldClass = NSClassFromString("GSSteppingTextField")
+
 
 class FontNameGeneratorWindow:
     def __init__(
@@ -78,9 +80,7 @@ class FontNameGeneratorWindow:
         self.w.min_max_length.min_letters.set(self.generator.min_length)
         self.w.min_max_length.max_letters.set(self.generator.max_length)
         self.w.ideal_length.input.set(self.generator.ideal_length)
-        self.w.length_influence.input.set(
-            self.generator.length_influence * 100
-        )
+        self.w.length_influence.input.set(self.generator.length_influence * 100)
         self.w.first_letters.input.set(self.generator.first_letters)
         self.w.other_letters.input.set(self.generator.other_letters)
         self.w.affix.prefix.set(self.generator.prefix)
@@ -156,9 +156,7 @@ class FontNameGeneratorWindow:
     def _ui_length_influence(self):
         self.w.length_influence = g = Group("auto")
         g.label = TextBox("auto", "Length Influence")
-        g.input = Slider(
-            "auto", value=25, minValue=0, maxValue=100, sizeStyle="small"
-        )
+        g.input = Slider("auto", value=25, minValue=0, maxValue=100, sizeStyle="small")
         g.addAutoPosSizeRules(
             [
                 "H:|[label(col)]-[input]|",
@@ -185,6 +183,7 @@ class FontNameGeneratorWindow:
 
     def _ui_buttons(self, save_callback, generate_callback):
         self.w.save = Button("auto", "Save Settings", callback=save_callback)
+
 
 if __name__ == "__main__":
     FontNameGeneratorWindow()

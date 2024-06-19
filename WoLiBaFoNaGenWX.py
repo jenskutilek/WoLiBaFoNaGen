@@ -176,9 +176,7 @@ class FNGFrame(wx.Frame):
         # The "\t..." syntax defines an accelerator key that also triggers
         # the same event
         newItem = fileMenu.Append(-1, "&New\tCtrl-N", "New name list")
-        saveItem = fileMenu.Append(
-            -1, "&Save...\tCtrl-S", "Save the current name list"
-        )
+        saveItem = fileMenu.Append(-1, "&Save...\tCtrl-S", "Save the current name list")
         fileMenu.AppendSeparator()
         # When using a stock ID we don't need to specify the menu item's
         # label
@@ -190,9 +188,7 @@ class FNGFrame(wx.Frame):
             "&Generate\tCtrl-G",
             "Generate a name list with the current settings",
         )
-        copyItem = editMenu.Append(
-            -1, "&Copy Names\tCtrl-C", "Copy the name list"
-        )
+        copyItem = editMenu.Append(-1, "&Copy Names\tCtrl-C", "Copy the name list")
 
         # Now a help menu for the about item
         # helpMenu = wx.Menu()
@@ -226,9 +222,7 @@ class FNGFrame(wx.Frame):
         self.fng.min_length = int(self.min_length.GetValue())
         self.fng.max_length = int(self.max_length.GetValue())
         self.fng.ideal_length = int(self.ideal_length.GetValue())
-        self.fng.length_influence = 0.01 * int(
-            self.length_influence.GetValue()
-        )
+        self.fng.length_influence = 0.01 * int(self.length_influence.GetValue())
         self.fng.first_letters = self.first_letters.GetValue()
         self.fng.other_letters = self.other_letters.GetValue()
         self.fng.prefix = self.prefix.GetValue()
@@ -238,10 +232,7 @@ class FNGFrame(wx.Frame):
         return (
             prefix,
             suffix,
-            {
-                score: [word[0] for word in words]
-                for score, words in word_dict.items()
-            },
+            {score: [word[0] for word in words] for score, words in word_dict.items()},
         )
 
     def OnGenerate(self, event):
@@ -270,8 +261,7 @@ class FNGFrame(wx.Frame):
                 # words.append("%0.3f" % score)
                 for word in self.word_dict[score]:
                     words.append(
-                        "%s%s%s"
-                        % (self.fng.prefix, word.title(), self.fng.suffix)
+                        "%s%s%s" % (self.fng.prefix, word.title(), self.fng.suffix)
                     )
                     i += 1
                     if i >= rows:
