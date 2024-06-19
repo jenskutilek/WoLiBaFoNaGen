@@ -1,6 +1,6 @@
 import wx
 import wx.grid
-from wx.lib.pubsub import pub
+from pubsub import pub
 from sys import platform
 
 from FontNameGenerator import (
