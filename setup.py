@@ -5,9 +5,9 @@ mainscript = "WoLiBaFoNaGen.py"
 
 PLIST = dict(
     CFBundleIdentifier="de.kutilek.WoLiBaFoNaGen",
-    NSHumanReadableCopyright="Copyright © 2017-2022 by Jens Kutílek",
+    NSHumanReadableCopyright="Copyright © 2017-2024 by Jens Kutílek",
     LSMinimumSystemVersion="10.12.0",
-    CFBundleShortVersionString="2.0.1",
+    CFBundleShortVersionString="2.0.2",
     CFBundleVersion="2",
 )
 
@@ -51,7 +51,6 @@ OPTIONS = {
         "unittest",
         "pydoc",
         "pip",
-        "http",
         "html",
         "distutils",
     ],  # modules are not available in dist
