@@ -25,7 +25,7 @@ class FNGFrame(wx.Frame):
 
     def __init__(self, *args, **kw):
         # ensure the parent's __init__ is called
-        super(FNGFrame, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
         self.SetSizeHints(ui_width, ui_height, ui_width, ui_height)
 
@@ -260,9 +260,7 @@ class FNGFrame(wx.Frame):
             for score in sorted(self.word_dict.keys(), reverse=True):
                 # words.append("%0.3f" % score)
                 for word in self.word_dict[score]:
-                    words.append(
-                        "%s%s%s" % (self.fng.prefix, word.title(), self.fng.suffix)
-                    )
+                    words.append(f"{self.fng.prefix}{word.title()}{self.fng.suffix}")
                     i += 1
                     if i >= rows:
                         break
@@ -307,9 +305,7 @@ class GridFrame(wx.Frame):
             ui_width = 300
             ui_height = 400
 
-        super(GridFrame, self).__init__(
-            None, wx.ID_ANY, "Results", size=(ui_width, ui_height)
-        )
+        super().__init__(None, wx.ID_ANY, "Results", size=(ui_width, ui_height))
 
         self.SetSizeHints(ui_width, ui_height)
 
@@ -341,9 +337,7 @@ class GridFrame(wx.Frame):
                     break
                 self.grid.SetCellValue(i, 0, "%0.3f" % score)
                 for word in word_dict[score]:
-                    self.grid.SetCellValue(
-                        i, 1, "%s%s%s" % (prefix, word.title(), suffix)
-                    )
+                    self.grid.SetCellValue(i, 1, f"{prefix}{word.title()}{suffix}")
                     i += 1
                     if i >= rows:
                         break

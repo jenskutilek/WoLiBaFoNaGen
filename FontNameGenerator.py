@@ -132,7 +132,9 @@ class FontNameGenerator:
                 f.write("\n****** Score: %s ******\n" % s)
                 for w, r, d in sorted(the_dict[s]):
                     f.write(
-                        "%s%s%s%s\n" % (self.prefix, w[0].upper(), w[1:], self.suffix)
+                        "{}{}{}{}\n".format(
+                            self.prefix, w[0].upper(), w[1:], self.suffix
+                        )
                     )
             else:
                 break
