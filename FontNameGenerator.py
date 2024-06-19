@@ -1,5 +1,4 @@
 import codecs
-import sys
 from pathlib import Path
 
 min_length = 4
