@@ -20,14 +20,15 @@ debug: *.py *.txt # Resources/WoLiBaFoNaGen.icns
 
 
 .PHONY: venv
-venv:
-	python3 -m venv venv
+venv: requirements-dev.txt
+	python3.11 -m venv venv
+	. venv/bin/activate; pip install -r requirements-dev.txt
 
 
 .PHONY: dist-clean
 dist-clean: clean
 	rm -rf venv
-	find . -type f -name *.pyc -exec rm "{}" \;
+	find . -type d -name __pycache__ -exec rm -rf "{}" \;
 
 
 .PHONY: clean
